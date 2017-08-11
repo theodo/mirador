@@ -1,34 +1,72 @@
-import ext from "./utils/ext";
+import ext from "./utils/ext"
 
-var extractTags = () => {
-  var url = document.location.href;
-  if(!url || !url.match(/^http/)) return;
+const extractCardData = (card) => {
+  const title = card.querySelector('.js-card-name').innerText
+  const cardLabels = card.querySelectorAll('.card-label')
 
-  var data = {
-    title: "",
-    description: "",
-    url: document.location.href
+  const cardData = {
+    title: title,
+    labels: []
+  }
+  if (cardLabels) {
+    [].forEach.call(cardLabels, function(label) {
+      cardData.labels.push(label.innerText)
+    })
   }
 
-  var ogTitle = document.querySelector("meta[property='og:title']");
-  if(ogTitle) {
-    data.title = ogTitle.getAttribute("content")
-  } else {
-    data.title = document.title
+  return cardData
+}
+
+const extractListData = (list) => {
+  const title = list.querySelector('h2').innerText
+  const cards = list.querySelectorAll('.list-card-details')
+
+  const listData = {
+    title: title,
+    labels: {}
   }
 
-  var descriptionTag = document.querySelector("meta[property='og:description']") || document.querySelector("meta[name='description']")
-  if(descriptionTag) {
-    data.description = descriptionTag.getAttribute("content")
+  const listCards = []
+  if (cards) {
+    [].forEach.call(cards, function(card) {
+      listCards.push(extractCardData(card))
+    })
   }
 
-  return data;
+  listCards.forEach(function(card) {
+    card.labels.forEach(function(label) {
+      if (!(label in listData.labels)) {
+        listData.labels[label] = []
+      }
+      listData.labels[label].push(card)
+    })
+  })
+
+  return listData
+}
+
+const extractBoardData = () => {
+  const lists = document.querySelectorAll('.list')
+  const boardData = {
+    title: document.querySelector('.board-header-btn-text').innerText,
+    lists: []
+  }
+
+  if (lists) {
+    [].forEach.call(lists, function(list) {
+      boardData.lists.push(extractListData(list))
+    })
+  }
+
+  return boardData
 }
 
 function onRequest(request, sender, sendResponse) {
   if (request.action === 'process-page') {
-    sendResponse(extractTags())
+    sendResponse(extractBoardData())
   }
 }
 
-ext.runtime.onMessage.addListener(onRequest);
+window.addEventListener('load', function() {
+  ext.runtime.onMessage.addListener(onRequest);
+})

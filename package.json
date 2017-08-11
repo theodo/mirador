@@ -1,7 +1,7 @@
 {
-  "name": "extension-boilerplate",
+  "name": "Mirador",
   "version": "0.0.2",
-  "description": "A template for creating cross-browser extensions",
+  "description": "One click to check out the completion of your trello EPICs",
   "scripts": {
     "chrome-build": "cross-env TARGET=chrome gulp",
     "opera-build": "cross-env TARGET=opera gulp",
