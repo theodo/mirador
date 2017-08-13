@@ -1,11 +1,13 @@
 import ext from "./utils/ext"
 
 const extractCardData = (card) => {
+  const complexity = card.hasAttribute('data-calculated-points') ? card.getAttribute('data-calculated-points') : 0;
   const title = card.querySelector('.js-card-name').innerText
   const cardLabels = card.querySelectorAll('.card-label')
 
   const cardData = {
     title: title,
+    complexity: complexity,
     labels: []
   }
   if (cardLabels) {
@@ -13,13 +15,12 @@ const extractCardData = (card) => {
       cardData.labels.push(label.innerText)
     })
   }
-
   return cardData
 }
 
 const extractListData = (list) => {
   const title = list.querySelector('h2').innerText
-  const cards = list.querySelectorAll('.list-card-details')
+  const cards = list.querySelectorAll('.list-card')
 
   const listData = {
     title: title,
