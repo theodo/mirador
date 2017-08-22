@@ -4,9 +4,13 @@ const compute = function (data) {
   return data.lists.reduce(function(aggr, list) {
     Object.keys(list.labels).forEach(function(label) {
       if (label in aggr) {
-        aggr[label] += list.labels[label].length
+        aggr[label].numberOfCards += list.labels[label].length
+        aggr[label].labelComplexity += getLabelComplexity(list.labels[label])
       } else {
-        aggr[label] = list.labels[label].length
+        aggr[label] = {
+          numberOfCards: list.labels[label].length,
+          labelComplexity: getLabelComplexity(list.labels[label])
+        }
       }
     })
 
@@ -14,10 +18,16 @@ const compute = function (data) {
   }, {})
 }
 
+const getLabelComplexity = function (label) {
+  return label.reduce(function(sum, key) {
+    return sum + parseFloat(key.complexity)
+  }, 0);
+}
+
 const renderList = function(list) {
   let renderedList = '';
   Object.keys(list).sort().forEach(function(key) {
-    renderedList += `<li>${key}: ${list[key]}</li>`;
+    renderedList += `<li>${key}: ${list[key].numberOfCards} cartes ${list[key].labelComplexity} points</li>`;
   })
 
   return renderedList
