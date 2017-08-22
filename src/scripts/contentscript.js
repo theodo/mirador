@@ -1,7 +1,8 @@
 import ext from "./utils/ext"
 
 const extractCardData = (card) => {
-  const complexity = card.hasAttribute('data-calculated-points') ? card.getAttribute('data-calculated-points') : 0;
+  // get complexity in the html attribute if using scrummer else in the title of the card
+  const complexity = card.hasAttribute('data-calculated-points') ? card.getAttribute('data-calculated-points') : getComplexityFromTitle(card);
   const title = card.querySelector('.js-card-name').innerText
   const cardLabels = card.querySelectorAll('.card-label')
 
@@ -16,6 +17,14 @@ const extractCardData = (card) => {
     })
   }
   return cardData
+}
+
+const getComplexityFromTitle = (card) => {
+
+  const matchedNumberInParenthesisInTitle = card.querySelector('.js-card-name').innerText.match((/^\((\d+[\.,]?\d*)\).+$/));
+  const complexity = matchedNumberInParenthesisInTitle ? matchedNumberInParenthesisInTitle[1] : 0;
+
+  return complexity;
 }
 
 const extractListData = (list) => {
