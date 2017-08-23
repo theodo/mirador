@@ -16,8 +16,7 @@
   "permissions": [
     "tabs",
     "storage",
-    "http://*/*",
-    "https://*/*"
+    "https://trello.com/*"
   ],
   "options_ui": {
     "page": "options.html"
