@@ -8,9 +8,71 @@ body, html {
 }
 
 #app {
-  padding: 20px 20px;
   background: $white;
   height: 500px;
   width: 500px;
   overflow-y: scroll;
+}
+
+.column {
+  margin: 2px;
+  padding: 2px;
+
+  &__informations {
+    display: flex;
+
+    &__name {
+      font-weight: bold;
+    }
+
+    &__card-count {
+      margin-left: 5px;
+      font-style: italic;
+    }
+
+    &__complexity-progression {
+      margin-left: 5px;
+    }
+  }
+
+  &__completion {
+    height: 3px;
+    background-color: #FBC02D;
+
+    &__done {
+      height: 3px;
+      background-color: #00E676;
+      width: 0;
+    }
+  }
+}
+
+.column-selector {
+  &__button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: #4FC3F7;
+    height: 56px;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    background-color: #B3E5FC;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+
+    &__item {
+      background-color: white;
+      padding: 5px;
+      text-align: center;
+
+      &--selected {
+        background-color: #B3E5FC;
+      }
+    }
+  }
 }

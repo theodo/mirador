@@ -39,16 +39,21 @@ const extractListData = (list) => {
   const listCards = []
   if (cards) {
     [].forEach.call(cards, function(card) {
-      listCards.push(extractCardData(card))
+      listCards.push(extractCardData(card));
     })
   }
 
   listCards.forEach(function(card) {
     card.labels.forEach(function(label) {
       if (!(label in listData.labels)) {
-        listData.labels[label] = []
+        listData.labels[label] = {
+          title: label,
+          cards: 0,
+          complexity: 0,
+        };
       }
-      listData.labels[label].push(card)
+      listData.labels[label].cards += 1;
+      listData.labels[label].complexity += parseFloat(card.complexity);
     })
   })
 
@@ -59,6 +64,7 @@ const extractBoardData = () => {
   const lists = document.querySelectorAll('.list')
   const boardData = {
     title: document.querySelector('.board-header-btn-text').innerText,
+
     lists: []
   }
 
@@ -68,12 +74,21 @@ const extractBoardData = () => {
     })
   }
 
+  let doneColumns = null;
+  try {
+    doneColumns = JSON.parse(window.localStorage.getItem('doneColumns'));
+  } catch (e) {}
+  boardData.doneColumns = (doneColumns) ? doneColumns : [];
+
   return boardData
 }
 
 function onRequest(request, sender, sendResponse) {
   if (request.action === 'process-page') {
     sendResponse(extractBoardData())
+  }
+  if (request.action === 'persist-done-columns') {
+    window.localStorage.setItem('doneColumns', request.load)
   }
 }
 

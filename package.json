@@ -1,6 +1,6 @@
 {
   "name": "Mirador",
-  "version": "0.0.2",
+  "version": "0.9.0",
   "description": "One click to check out the completion of your trello EPICs",
   "scripts": {
     "chrome-build": "cross-env TARGET=chrome gulp",
