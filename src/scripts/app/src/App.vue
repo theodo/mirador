@@ -11,12 +11,15 @@
 import BoardFormatter from './services/BoardFormatter'
 import ColumnSelector from './components/ColumnSelector.vue'
 import CompletionDisplay from './components/CompletionDisplay.vue'
+import DefaultButton from './components/DefaultButton.vue'
+
+import data from '../data.json'
 
 export default {
   name: 'app',
   components: {
     ColumnSelector,
-    CompletionDisplay
+    CompletionDisplay,
   },
   data: function() {
     return {
@@ -28,6 +31,11 @@ export default {
     }
   },
   mounted: function() {
+    this.data = data
+    this.doneColumns = data.doneColumns
+    this.labels = BoardFormatter.format(data, data.doneColumns)
+    this.columns = BoardFormatter.extractColumns(data)
+    this.isBooted = true
     window.eventBus.$on('data-fetched', (data) => {
       this.data = data
       this.doneColumns = data.doneColumns
@@ -40,16 +48,15 @@ export default {
     updateColumns: function(columns) {
       this.doneColumns = columns
       this.labels = BoardFormatter.format(this.data, this.doneColumns)
-    }
+    },
   }
 }
 </script>
 
 <style>
 #app {
-  height: 500px;
+  height: 600px;
   width: 500px;
-  overflow-y: scroll;
   position: relative;
 }
 

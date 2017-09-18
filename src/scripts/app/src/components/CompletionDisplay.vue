@@ -1,35 +1,32 @@
 <template>
   <div>
-    <div class="column" v-for="label in labels">
+    <div class="epic__stats" v-for="label in labels">
       <div class="column__informations">
-        <div class="column__informations__name">{{ label.title }}</div>
-        <span class="column__informations__complexity-progression">{{ label.doneComplexity }} / {{ label.complexity }} pts</span>
+        <div style="display: flex;">
+          <div class="column__informations__name">{{ label.title }}</div>
+          <span class="column__informations__complexity-progression">{{ label.doneComplexity }} / {{ label.complexity }} pts</span>
+        </div>
         <span class="column__informations__card-count">({{ label.cards }} cards)</span>
       </div>
-      <div class="column__completion">
-        <div class="column__completion__done" :style="computeLabelStyle(label)" />
-      </div>
+      <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      labels: {
-        type: Array,
-        default: []
-      }
-    },
-    methods: {
-      computeLabelStyle: function(label) {
-        console.log()
-        return {
-          width: Math.round((label.doneComplexity / label.complexity) * 100) + '%',
-        }
-      }
+import CompletionRateBar from './CompletionRateBar.vue'
+
+export default {
+  components: {
+    CompletionRateBar
+  },
+  props: {
+    labels: {
+      type: Array,
+      default: []
     }
-  }
+  },
+}
 </script>
 
 <style>
@@ -38,8 +35,13 @@
   padding: 2px;
 }
 
+.epic__stats {
+  margin-bottom: 5px;
+}
+
 .column__informations {
   display: flex;
+  justify-content: space-between;
 }
 
 .column__informations__name {
@@ -53,16 +55,5 @@
 
 .column__informations__complexity-progression {
   margin-left: 5px;
-}
-
-.column__completion {
-  height: 3px;
-  background-color: #FBC02D;
-}
-
-.column__completion__done {
-  height: 3px;
-  background-color: #00E676;
-  width: 0;
 }
 </style>

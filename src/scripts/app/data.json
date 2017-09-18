@@ -1,0 +1,50 @@
+{
+  "title": "This is a placeholder",
+  "lists": [
+    {
+      "title": "Column 1",
+      "labels": {
+        "Wait for the trello board": {
+          "title": "Wait for the trello board",
+          "cards": 1,
+          "complexity": 10
+        }
+      }
+    },
+    {
+      "title": "Column 2",
+      "labels": {
+        "Wait for the trello board": {
+          "title": "Wait for the trello board",
+          "cards": 1,
+          "complexity": 10
+        },
+        "to be fully loaded": {
+          "title": "to be fully loaded",
+          "cards": 1,
+          "complexity": 10
+        },
+        "to be fully loaded": {
+          "title": "to be fully loaded",
+          "cards": 1,
+          "complexity": 10
+        }
+      }
+    },
+    {
+      "title": "Column 3",
+      "labels": {
+        "to be fully loaded": {
+          "title": "to be fully loaded",
+          "cards": 1,
+          "complexity": 10
+        },
+        "before opening this extension": {
+          "title": "before opening this extension",
+          "cards": 1,
+          "complexity": 10
+        }
+      }
+    }
+  ]
+}

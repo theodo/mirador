@@ -2,15 +2,16 @@ import ext from "./utils/ext"
 
 const extractCardData = (card) => {
   // get complexity in the html attribute if using scrummer else in the title of the card
-  const complexity = card.hasAttribute('data-calculated-points') ? card.getAttribute('data-calculated-points') : getComplexityFromTitle(card);
   const title = card.querySelector('.js-card-name').innerText
-  const cardLabels = card.querySelectorAll('.card-label')
-
+  const complexity = card.hasAttribute('data-calculated-points') ? card.getAttribute('data-calculated-points') : getComplexityFromTitle(title)
+  const isEpic = detectEpic(title)
   const cardData = {
-    title: title,
     complexity: complexity,
-    labels: []
+    labels: [],
+    isEpic: isEpic,
   }
+
+  const cardLabels = card.querySelectorAll('.card-label')
   if (cardLabels) {
     [].forEach.call(cardLabels, function(label) {
       cardData.labels.push(label.innerText)
@@ -19,10 +20,13 @@ const extractCardData = (card) => {
   return cardData
 }
 
-const getComplexityFromTitle = (card) => {
+const detectEpic = (title) => {
+  return false
+}
 
-  const matchedNumberInParenthesisInTitle = card.querySelector('.js-card-name').innerText.match((/^\((\d+[\.,]?\d*)\).+$/));
-  const complexity = matchedNumberInParenthesisInTitle ? matchedNumberInParenthesisInTitle[1] : 0;
+const getComplexityFromTitle = (title) => {
+  const complexityDetected = title.match(/^\((\d+[\.,]?\d*)\).+$/);
+  const complexity = complexityDetected ? complexityDetected[1] : 0;
 
   return complexity;
 }
@@ -64,8 +68,8 @@ const extractBoardData = () => {
   const lists = document.querySelectorAll('.list')
   const boardData = {
     title: document.querySelector('.board-header-btn-text').innerText,
-
-    lists: []
+    doneColumns: [],
+    lists: [],
   }
 
   if (lists) {
@@ -80,6 +84,7 @@ const extractBoardData = () => {
   } catch (e) {}
   boardData.doneColumns = (doneColumns) ? doneColumns : [];
 
+  console.log(boardData);
   return boardData
 }
 

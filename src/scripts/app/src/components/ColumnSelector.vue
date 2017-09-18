@@ -1,29 +1,41 @@
 <template>
   <div class="column-selector">
-    <div
-      class="column-selector__button"
-      @click="openColumnSelector"
-    >{{ selectorTitle }}</div>
+    <div>
+      <DefaultButton :callback="openFeedbackForm" :title="'Give us feedback'"></DefaultButton>
+      <ColumnSelectorButton
+        :selected-columns-number="this.selectedColumns.length"
+        :opened="isOpen"
+        :open="openColumnSelector"
+      />
+    </div>
     <ul v-if="isOpen" class="column-selector__list">
       <li
         v-for="column in columns"
         @click="selectColumn(column)"
-        class="column-selector__list__item"
         :class="{'column-selector__list__item--selected': selectedColumns.includes(column)}"
+        class="column-selector__list__item"
       >
         {{ column }}
       </li>
     </ul>
-    <div
-      class="column-selector__button"
+    <ColumnSelectorButton
       v-if="isOpen"
-      @click="openColumnSelector"
-    >{{ selectorTitle }}</div>
+      :open="openColumnSelector"
+      :opened="isOpen"
+      :selected-columns-number="this.selectedColumns.length"
+    />
   </div>
 </template>
 
 <script>
+import ColumnSelectorButton from './ColumnSelectorButton.vue'
+import DefaultButton from './DefaultButton.vue'
+
 export default {
+  components: {
+    ColumnSelectorButton,
+    DefaultButton,
+  },
   props: {
     columns: {
       type: Array,
@@ -39,16 +51,6 @@ export default {
       isOpen: false,
       selectedColumns: [],
     }
-  },
-  computed: {
-    selectorTitle: function() {
-      if (this.isOpen) {
-        return (this.selectedColumns.length > 0) ? `validate (${this.selectedColumns.length})` : 'select done columns'
-      }
-      return (this.selectedColumns.length > 0)
-        ? this.selectedColumns.length + ' columns selected'
-        : 'select done columns'
-    },
   },
   mounted: function() {
     this.selectedColumns = this.doneColumns.filter((column) => {
@@ -71,33 +73,24 @@ export default {
       const index = this.selectedColumns.indexOf(columnName);
       this.selectedColumns.splice(index, 1);
     },
+    openFeedbackForm: function() {
+      window.open('https://goo.gl/forms/H1LuoC5suvkd2bWo1', '_blank')
+    },
   },
 }
 </script>
 
 <style>
-.column-selector__button {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  background-color: #4FC3F7;
-  height: 56px;
-  text-transform: uppercase;
-}
-
 .column-selector__list {
-  background-color: #B3E5FC;
   margin: 0;
   padding: 10px;
   list-style: none;
 }
 
 .column-selector__list__item {
-  background-color: white;
   padding: 5px;
   text-align: center;
+  cursor: pointer;
 }
 
 .column-selector__list__item--selected {

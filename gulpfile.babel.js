@@ -22,7 +22,6 @@ var manifest = {
     "background": {
       "scripts": [
         "scripts/livereload.js",
-        "scripts/background.js"
       ]
     }
   },
@@ -42,7 +41,7 @@ gulp.task('clean', () => {
 })
 
 gulp.task('build', (cb) => {
-  $.runSequence('clean', 'styles', 'ext', cb)
+  $.runSequence('clean', 'vue-styles', 'ext', cb)
 });
 
 gulp.task('watch', ['build'], () => {
@@ -67,14 +66,9 @@ gulp.task('js', () => {
   return buildJS(target)
 })
 
-gulp.task('styles', () => {
-  return gulp.src('src/styles/**/*.scss')
+gulp.task('vue-styles', () => {
+  return gulp.src('src/scripts/app/dist/static/css/app.css')
     .pipe($.plumber())
-    .pipe($.sass.sync({
-      outputStyle: 'expanded',
-      precision: 10,
-      includePaths: ['.']
-    }).on('error', $.sass.logError))
     .pipe(gulp.dest(`build/${target}/styles`));
 });
 
@@ -130,9 +124,7 @@ function buildJS(target) {
     'app/dist/static/js/manifest.js',
     'app/dist/static/js/vendor.js',
     'app/dist/static/js/app.js',
-    'background.js',
     'contentscript.js',
-    'options.js',
     'popup.js',
     'livereload.js'
   ]
