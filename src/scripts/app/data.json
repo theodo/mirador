@@ -7,7 +7,7 @@
         "Wait for the trello board": {
           "title": "Wait for the trello board",
           "cards": 1,
-          "complexity": 10
+          "complexity": 3
         }
       }
     },
@@ -17,32 +17,32 @@
         "Wait for the trello board": {
           "title": "Wait for the trello board",
           "cards": 1,
-          "complexity": 10
+          "complexity": 3
         },
-        "to be fully loaded": {
-          "title": "to be fully loaded",
+        " to be fully loaded": {
+          "title": " to be fully loaded",
           "cards": 1,
-          "complexity": 10
+          "complexity": 3
         },
-        "to be fully loaded": {
-          "title": "to be fully loaded",
+        " to be fully loaded": {
+          "title": " to be fully loaded",
           "cards": 1,
-          "complexity": 10
+          "complexity": 13
         }
       }
     },
     {
       "title": "Column 3",
       "labels": {
-        "to be fully loaded": {
-          "title": "to be fully loaded",
+        " to be fully loaded": {
+          "title": " to be fully loaded",
           "cards": 1,
-          "complexity": 10
+          "complexity": 1
         },
-        "before opening this extension": {
-          "title": "before opening this extension",
+        "(20) before opening this extension": {
+          "title": "(20) before opening this extension",
           "cards": 1,
-          "complexity": 10
+          "complexity": 5
         }
       }
     }

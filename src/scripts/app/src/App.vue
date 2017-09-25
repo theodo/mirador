@@ -12,7 +12,6 @@ import BoardFormatter from './services/BoardFormatter'
 import ColumnSelector from './components/ColumnSelector.vue'
 import CompletionDisplay from './components/CompletionDisplay.vue'
 import DefaultButton from './components/DefaultButton.vue'
-
 import data from '../data.json'
 
 export default {
@@ -41,7 +40,6 @@ export default {
       this.doneColumns = data.doneColumns
       this.labels = BoardFormatter.format(data, data.doneColumns)
       this.columns = BoardFormatter.extractColumns(data)
-      this.isBooted = true
     })
   },
   methods: {
@@ -58,6 +56,7 @@ export default {
   height: 600px;
   width: 500px;
   position: relative;
+  overflow: scroll;
 }
 
 body {

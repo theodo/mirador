@@ -8,12 +8,12 @@
         :open="openColumnSelector"
       />
     </div>
-    <ul v-if="isOpen" class="column-selector__list">
+    <ul v-if="isOpen" class="column-selector__list list-group">
       <li
         v-for="column in columns"
         @click="selectColumn(column)"
-        :class="{'column-selector__list__item--selected': selectedColumns.includes(column)}"
-        class="column-selector__list__item"
+        :class="{'active': selectedColumns.includes(column)}"
+        class="column-selector__list__item list-group-item"
       >
         {{ column }}
       </li>

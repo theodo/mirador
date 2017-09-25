@@ -84,7 +84,6 @@ const extractBoardData = () => {
   } catch (e) {}
   boardData.doneColumns = (doneColumns) ? doneColumns : [];
 
-  console.log(boardData);
   return boardData
 }
 

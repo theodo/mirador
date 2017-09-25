@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <div class="epic__stats" v-for="label in labels">
-      <div class="column__informations">
+      <div class="column__informations py-2">
         <div style="display: flex;">
           <div class="column__informations__name">{{ label.title }}</div>
           <span class="column__informations__complexity-progression">{{ label.doneComplexity }} / {{ label.complexity }} pts</span>
