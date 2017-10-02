@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <InformationBadges />
     <div class="epic__stats" v-for="label in labels">
       <div class="column__informations py-2">
         <div style="display: flex;">
@@ -15,10 +16,12 @@
 
 <script>
 import CompletionRateBar from './CompletionRateBar.vue'
+import InformationBadges from './InformationBadges.vue'
 
 export default {
   components: {
-    CompletionRateBar
+    CompletionRateBar,
+    InformationBadges,
   },
   props: {
     labels: {
