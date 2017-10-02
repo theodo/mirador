@@ -1,5 +1,5 @@
 <template>
-  <div class="column-selector__button btn btn-info btn-block" @click="callback">{{ title }}</div>
+  <div class="column-selector__button btn btn-info mirador__default-button" @click="callback">{{ title }}</div>
 </template>
 
 <script>
@@ -16,3 +16,9 @@ export default {
   },
 }
 </script>
+
+<style>
+  .mirador__default-button {
+    margin: 5px;
+  }
+</style>

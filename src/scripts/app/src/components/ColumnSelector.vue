@@ -1,12 +1,17 @@
 <template>
   <div class="column-selector">
     <div>
-      <DefaultButton :callback="openFeedbackForm" :title="'Give us feedback'"></DefaultButton>
-      <ColumnSelectorButton
-        :selected-columns-number="this.selectedColumns.length"
-        :opened="isOpen"
-        :open="openColumnSelector"
-      />
+      <div class="container mirador__button-container">
+        <div class="row">
+          <!-- <DefaultButton class="col" :title="'Tutorial'"></DefaultButton> -->
+          <DefaultButton class="col" :callback="openFeedbackForm" :title="'Give us feedback'"></DefaultButton>
+          <ColumnSelectorButton class="col"
+          :selected-columns-number="this.selectedColumns.length"
+          :opened="isOpen"
+          :open="openColumnSelector"
+          />
+        </div>
+      </div>
     </div>
     <ul v-if="isOpen" class="column-selector__list list-group">
       <li
@@ -91,6 +96,10 @@ export default {
   padding: 5px;
   text-align: center;
   cursor: pointer;
+}
+
+.mirador__button-container {
+  margin: 5px;
 }
 
 .column-selector__list__item--selected {
