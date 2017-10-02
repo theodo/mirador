@@ -8,7 +8,7 @@
         </div>
         <span class="column__informations__card-count">({{ label.cards }} cards)</span>
       </div>
-      <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" />
+      <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
     </div>
   </div>
 </template>

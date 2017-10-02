@@ -28,6 +28,11 @@
           "title": " to be fully loaded",
           "cards": 1,
           "complexity": 13
+        },
+        "(20) before opening this extension": {
+          "title": "(20) before opening this extension",
+          "cards": 1,
+          "complexity": 30
         }
       }
     },
@@ -42,7 +47,12 @@
         "(20) before opening this extension": {
           "title": "(20) before opening this extension",
           "cards": 1,
-          "complexity": 5
+          "complexity": 20
+        },
+        "(50) 4th case test": {
+          "title": "(50) 4th case test",
+          "cards": 1,
+          "complexity": 12
         }
       }
     }

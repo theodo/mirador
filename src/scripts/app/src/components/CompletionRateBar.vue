@@ -1,8 +1,14 @@
-<template>
-  <div class="column__completion progress">
-    <div class="column__completion__done progress-bar" role="progressbar" :style="greenBar" />
-    <div class="column__completion__red-land progress-bar bg-danger" role="progressbar" :style="redBar" />
-  </div>
+  <template>
+    <div>
+      <div class="column__completion progress">
+        <div class="column__completion__done progress-bar bg-success" role="progressbar" :style="greenBar" />
+        <div class="column__completion__red-land progress-bar" role="progressbar" :style="blueBar" />
+      </div>
+      <div v-if="complexity" class="column__completion progress">
+        <div class="column__completion__red-land progress-bar bg-dark" role="progressbar" :style="darkBar" />
+        <div class="column__completion__red-land progress-bar bg-danger" role="progressbar" :style="redBar" />
+      </div>
+    </div>
 </template>
 
 <script>
@@ -16,18 +22,37 @@
         type: Number,
         required: true,
       },
+      totalComplexity: {
+        type: Number,
+        required: true,
+      },
     },
     computed: {
-      completionPercent: function () {
-        return Math.round((this.doneComplexity / this.complexity) * 100)
+      doneTotalRatio: function() {
+        return (this.doneComplexity/this.totalComplexity * 100)
+      },
+      blueBar: function() {
+        return ( this.complexity && this.totalComplexity < this.complexity
+          ? { width: (this.totalComplexity/this.complexity * (100 - this.doneTotalRatio) ) + '%' }
+          : { width: (100 - this.doneTotalRatio) + '%'}
+        )
       },
       greenBar: function() {
-        return (this.completionPercent >= 100) ? { width:10000/this.completionPercent+ '%' } : { width:this.completionPercent + '%' }
+        return ( this.complexity && this.totalComplexity < this.complexity
+          ? { width: (this.doneComplexity/this.complexity) + '%' }
+          : { width: (this.doneTotalRatio) + '%'}
+        )
+      },
+      darkBar: function() {
+        return (this.totalComplexity < this.complexity)
+          ? { width: '100%' }
+          : { width: ( this.complexity/this.totalComplexity * 100) + '%' }
       },
       redBar: function() {
-        return (this.completionPercent <= 100)
-          ? { width:'0%' }
-          : { width:((this.completionPercent - 100) / this.completionPercent) * 100 + '%' }
+        return ( this.doneComplexity > this.complexity
+          ? { width: ((this.doneComplexity - this.complexity)/this.totalComplexity * 100) + '%' }
+          : { width: '0%' }
+        )
       },
     },
   }
@@ -36,5 +61,9 @@
 <style>
 .column__completion {
   display: flex;
+}
+
+.bg-dark {
+  background-color: black;
 }
 </style>
