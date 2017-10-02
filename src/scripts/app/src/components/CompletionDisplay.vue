@@ -3,10 +3,7 @@
     <InformationBadges />
     <div class="epic__stats" v-for="label in labels">
       <div class="column__informations py-2">
-        <div style="display: flex;">
-          <div class="column__informations__name">{{ label.title }}</div>
-          <span class="column__informations__complexity-progression">{{ label.doneComplexity }} / {{ label.complexity }} pts</span>
-        </div>
+        <LabelDetails :label="label" />
         <span class="column__informations__card-count">({{ label.cards }} cards)</span>
       </div>
       <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
@@ -17,11 +14,13 @@
 <script>
 import CompletionRateBar from './CompletionRateBar.vue'
 import InformationBadges from './InformationBadges.vue'
+import LabelDetails from './LabelDetails.vue'
 
 export default {
   components: {
     CompletionRateBar,
     InformationBadges,
+    LabelDetails
   },
   props: {
     labels: {

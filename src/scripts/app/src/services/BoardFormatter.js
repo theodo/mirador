@@ -32,6 +32,7 @@ const compute = function (data, doneColumns = []) {
 }
 
 const sort = function(data) {
+  console.log(data)
   let sortedLabels = []
   Object.keys(data).forEach(function(label) {
     sortedLabels.push({
@@ -39,10 +40,25 @@ const sort = function(data) {
       cards: parseInt(data[label]['cards']),
       complexity: parseFloat(data[label]['complexity']),
       doneComplexity: parseFloat(data[label]['doneComplexity']),
+      totalComplexity: parseFloat(data[label]['totalComplexity'])
     })
   })
   return sortedLabels.sort(function(a, b) {
-    return a.complexity < b.complexity ? 1 : -1
+    if (a.complexity && b.complexity) {
+      return a.complexity < b.complexity ? 1 : -1
+    }
+
+    if (a.complexity && !b.complexity) {
+      return -1
+    }
+
+    if (!a.complexity && b.complexity) {
+      return 1
+    }
+
+    if (!a.complexity && !b.complexity) {
+      return a.totalComplexity < b.totalComplexity ? 1 : -1
+    }
   })
 }
 
