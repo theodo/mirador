@@ -1,6 +1,6 @@
 const getComplexityFromTitle = (title) => {
   const complexityDetected = title.match(/^.*\((\d+[\.,]?\d*)\).+$/);
-  const complexity = complexityDetected ? complexityDetected[1] : 0;
+  const complexity = complexityDetected ? complexityDetected[1] : null;
 
   return complexity;
 }
@@ -13,6 +13,7 @@ const compute = function (data, doneColumns = []) {
     Object.keys(list.labels).forEach(function(label) {
       if (label in aggr) {
         aggr[label]['cards'] += list.labels[label].cards
+        aggr[label]['totalComplexity'] += list.labels[label].complexity
         if (isDoneColumn) {
           aggr[label]['doneComplexity'] += list.labels[label].complexity
         }
@@ -21,6 +22,7 @@ const compute = function (data, doneColumns = []) {
           cards: list.labels[label].cards,
           complexity: getComplexityFromTitle(label),
           doneComplexity: isDoneColumn ? list.labels[label].complexity : 0,
+          totalComplexity: list.labels[label].complexity
         }
       }
     })

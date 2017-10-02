@@ -40,6 +40,7 @@ export default {
       this.doneColumns = data.doneColumns
       this.labels = BoardFormatter.format(data, data.doneColumns)
       this.columns = BoardFormatter.extractColumns(data)
+      this.isBooted = true
     })
   },
   methods: {
