@@ -4,7 +4,6 @@
     <div class="epic__stats" v-for="label in labels">
       <div class="column__informations py-2">
         <LabelDetails :label="label" />
-        <span class="column__informations__card-count">({{ label.cards }} cards)</span>
       </div>
       <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
     </div>

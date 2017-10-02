@@ -13,6 +13,9 @@ Ex : ''(20) Admin dashboard'
     <div class="col" data-toggle="tooltip" data-placement="top" title="Total points on the board for this specific label">
       <span class="badge badge-primary mirador__badge">Total</span>
     </div>
+    <div class="col" data-toggle="tooltip" data-placement="top" title="Total points over the label estimation">
+      <span class="badge badge-danger mirador__badge">Over</span>
+    </div>
   </div>
 </template>
 
