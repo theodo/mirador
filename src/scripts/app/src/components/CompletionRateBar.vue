@@ -29,7 +29,10 @@
     },
     computed: {
       doneTotalRatio: function() {
-        return (this.doneComplexity/this.totalComplexity * 100)
+        return (this.totalComplexity != 0
+          ? this.doneComplexity/this.totalComplexity * 100
+          : 0
+        )
       },
       blueBar: function() {
         return ( this.complexity && this.totalComplexity < this.complexity
@@ -39,7 +42,7 @@
       },
       greenBar: function() {
         return ( this.complexity && this.totalComplexity < this.complexity
-          ? { width: (this.doneComplexity/this.complexity) + '%' }
+          ? { width: (100 * this.doneComplexity/this.complexity) + '%' }
           : { width: (this.doneTotalRatio) + '%'}
         )
       },

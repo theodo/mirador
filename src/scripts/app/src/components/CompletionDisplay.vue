@@ -1,11 +1,15 @@
 <template>
   <div class="container">
-    <InformationBadges />
+    <div class="badge-container">
+      <InformationBadges />
+    </div>
     <div class="epic__stats" v-for="label in labels">
-      <div class="column__informations py-2">
-        <LabelDetails :label="label" />
+      <div class="label-container">
+        <div class="column__informations py-2">
+          <LabelDetails :label="label" />
+        </div>
+        <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
       </div>
-      <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
     </div>
   </div>
 </template>
@@ -52,6 +56,15 @@ export default {
 .column__informations__card-count {
   margin-left: 5px;
   font-style: italic;
+}
+
+.label-container {
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.badge-container {
+  padding: 10px 0;
 }
 
 .column__informations__complexity-progression {
