@@ -14,7 +14,10 @@ const extractCardData = (card) => {
   const cardLabels = card.querySelectorAll('.card-label')
   if (cardLabels) {
     [].forEach.call(cardLabels, function(label) {
-      cardData.labels.push(label.innerText)
+      cardData.labels.push({
+        title: label.innerText,
+        color: document.defaultView.getComputedStyle(label,null).getPropertyValue('background-color')
+      })
     })
   }
   return cardData
@@ -50,14 +53,15 @@ const extractListData = (list) => {
   listCards.forEach(function(card) {
     card.labels.forEach(function(label) {
       if (!(label in listData.labels)) {
-        listData.labels[label] = {
-          title: label,
+        listData.labels[label.title] = {
+          title: label.title,
           cards: 0,
           complexity: 0,
+          color: label.color,
         };
       }
-      listData.labels[label].cards += 1;
-      listData.labels[label].complexity += parseFloat(card.complexity);
+      listData.labels[label.title].cards += 1;
+      listData.labels[label.title].complexity += parseFloat(card.complexity);
     })
   })
 
