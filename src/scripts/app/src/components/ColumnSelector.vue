@@ -2,33 +2,38 @@
   <div class="column-selector">
     <div>
       <div class="container mirador__button-container">
-        <div class="row">
-          <!-- <DefaultButton class="col" :title="'Tutorial'"></DefaultButton> -->
-          <DefaultButton class="col" :callback="openFeedbackForm" :title="'Give us feedback'"></DefaultButton>
-          <ColumnSelectorButton class="col"
-          :selected-columns-number="this.selectedColumns.length"
-          :opened="isOpen"
-          :open="openColumnSelector"
+          <!-- <DefaultButton :title="'Tutorial'"></DefaultButton> -->
+          <DefaultButton
+            class="btn btn-secondary"
+            :callback="openFeedbackForm"
+            :title="'Give us feedback'"
+          >
+          </DefaultButton>
+          <ColumnSelectorButton
+            class="btn btn-success"
+            :selected-columns-number="this.selectedColumns.length"
+            :opened="isOpen"
+            :open="openColumnSelector"
           />
-        </div>
+          <ul v-if="isOpen" class="column-selector__list list-group">
+            <li
+            v-for="column in columns"
+            @click="selectColumn(column)"
+            :class="{'active': selectedColumns.includes(column)}"
+            class="column-selector__list__item list-group-item"
+            >
+            {{ column }}
+          </li>
+        </ul>
+        <ColumnSelectorButton
+        v-if="isOpen"
+        class="btn btn-success"
+        :open="openColumnSelector"
+        :opened="isOpen"
+        :selected-columns-number="this.selectedColumns.length"
+        />
       </div>
     </div>
-    <ul v-if="isOpen" class="column-selector__list list-group">
-      <li
-        v-for="column in columns"
-        @click="selectColumn(column)"
-        :class="{'active': selectedColumns.includes(column)}"
-        class="column-selector__list__item list-group-item"
-      >
-        {{ column }}
-      </li>
-    </ul>
-    <ColumnSelectorButton
-      v-if="isOpen"
-      :open="openColumnSelector"
-      :opened="isOpen"
-      :selected-columns-number="this.selectedColumns.length"
-    />
   </div>
 </template>
 
