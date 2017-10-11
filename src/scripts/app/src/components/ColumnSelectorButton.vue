@@ -27,12 +27,12 @@ export default {
     selectorTitle: function() {
       if (this.opened) {
         return (this.selectedColumnsNumber > 0)
-          ? `validate (${this.selectedColumnsNumber})`
-          : 'select done columns'
+          ? `Validate (${this.selectedColumnsNumber})`
+          : 'Select Done Columns'
       }
       return (this.selectedColumnsNumber > 0)
         ? this.selectedColumnsNumber + ' columns selected'
-        : 'select done columns'
+        : 'Select Done Columns'
     },
   },
 }
