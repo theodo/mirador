@@ -42,6 +42,7 @@ export default {
 
 .epic__stats {
   margin-bottom: 5px;
+  padding: 15px 0;
 }
 
 .column__informations {
@@ -65,7 +66,7 @@ export default {
 }
 
 .badge-container {
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .column__informations__complexity-progression {
