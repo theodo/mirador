@@ -51,6 +51,7 @@ export default {
 
 .column__informations__name {
   font-weight: bold;
+  color: white;
 }
 
 .column__informations__card-count {

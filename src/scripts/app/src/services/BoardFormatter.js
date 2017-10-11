@@ -22,7 +22,8 @@ const compute = function (data, doneColumns = []) {
           cards: list.labels[label].cards,
           complexity: getComplexityFromTitle(label),
           doneComplexity: isDoneColumn ? list.labels[label].complexity : 0,
-          totalComplexity: list.labels[label].complexity
+          totalComplexity: list.labels[label].complexity,
+          color: list.labels[label].color
         }
       }
     })
@@ -40,7 +41,8 @@ const sort = function(data) {
       cards: parseInt(data[label]['cards']),
       complexity: parseFloat(data[label]['complexity']),
       doneComplexity: parseFloat(data[label]['doneComplexity']),
-      totalComplexity: parseFloat(data[label]['totalComplexity'])
+      totalComplexity: parseFloat(data[label]['totalComplexity']),
+      color: data[label]['color']
     })
   })
   return sortedLabels.sort(function(a, b) {
