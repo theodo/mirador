@@ -1,0 +1,60 @@
+{
+  "title": "This is a placeholder",
+  "lists": [
+    {
+      "title": "Column 1",
+      "labels": {
+        "Wait for the trello board": {
+          "title": "Wait for the trello board",
+          "cards": 1,
+          "complexity": 3
+        }
+      }
+    },
+    {
+      "title": "Column 2",
+      "labels": {
+        "Wait for the trello board": {
+          "title": "Wait for the trello board",
+          "cards": 1,
+          "complexity": 3
+        },
+        " to be fully loaded": {
+          "title": " to be fully loaded",
+          "cards": 1,
+          "complexity": 3
+        },
+        " to be fully loaded": {
+          "title": " to be fully loaded",
+          "cards": 1,
+          "complexity": 13
+        },
+        "(20) before opening this extension": {
+          "title": "(20) before opening this extension",
+          "cards": 1,
+          "complexity": 30
+        }
+      }
+    },
+    {
+      "title": "Column 3",
+      "labels": {
+        " to be fully loaded": {
+          "title": " to be fully loaded",
+          "cards": 1,
+          "complexity": 1
+        },
+        "(20) before opening this extension": {
+          "title": "(20) before opening this extension",
+          "cards": 1,
+          "complexity": 20
+        },
+        "(50) 4th case test": {
+          "title": "(50) 4th case test",
+          "cards": 1,
+          "complexity": 12
+        }
+      }
+    }
+  ]
+}

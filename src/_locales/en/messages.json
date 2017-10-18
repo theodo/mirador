@@ -4,7 +4,7 @@
     "description": "The name of the extension."
   },
   "appDescription": {
-    "message": "One click to checkout the completion of your EPIC",
+    "message": "One click to checkout the completion of your EPICs",
     "description": "The description of the extension."
   },
   "btnTooltip": {
