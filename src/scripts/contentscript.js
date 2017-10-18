@@ -52,7 +52,7 @@ const extractListData = (list) => {
 
   listCards.forEach(function(card) {
     card.labels.forEach(function(label) {
-      if (!(label in listData.labels)) {
+      if (!(label.title in listData.labels)) {
         listData.labels[label.title] = {
           title: label.title,
           cards: 0,

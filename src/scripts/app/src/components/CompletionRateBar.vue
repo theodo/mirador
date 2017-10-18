@@ -1,7 +1,7 @@
   <template>
     <div>
       <div class="column__completion progress">
-        <div class="column__completion__done progress-bar bg-success" role="progressbar" :style="grayBar" />
+        <div class="column__completion__done progress-bar bg-success" role="progressbar" :style="greenBar" />
         <div class="column__completion__red-land progress-bar" role="progressbar" :style="blueBar" />
       </div>
       <div v-if="complexity" class="column__completion progress">
@@ -40,9 +40,9 @@
           : { width: (100 - this.doneTotalRatio) + '%'}
         )
       },
-      grayBar: function() {
+      greenBar: function() {
         return ( this.complexity && this.totalComplexity < this.complexity
-          ? { width: (this.doneComplexity/this.complexity) + '%' }
+          ? { width: (100 * this.doneComplexity/this.complexity) + '%' }
           : { width: (this.doneTotalRatio) + '%'}
         )
       },
