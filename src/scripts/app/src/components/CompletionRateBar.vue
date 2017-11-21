@@ -1,12 +1,11 @@
   <template>
     <div>
-      <div class="column__completion progress">
-        <div class="column__completion__done progress-bar bg-success" role="progressbar" :style="greenBar" />
-        <div class="column__completion__red-land progress-bar" role="progressbar" :style="blueBar" />
-      </div>
-      <div v-if="complexity" class="column__completion progress">
-        <div class="column__completion__red-land progress-bar bg-dark" role="progressbar" :style="darkBar" />
+      <div class="column__completion progress-bar-border progression-bar-position">
+        <div class="progress-bar-cursor" v-if="shouldCursorBeVisible" :style="cursor"></div>
+        <div class="column__completion__red-land progress-bar bg-white  progress-white-bar-border" role="progressbar" :style="whiteBar" />
         <div class="column__completion__red-land progress-bar bg-danger" role="progressbar" :style="redBar" />
+        <div class="column__completion__red-land progress-bar bg-warning" role="progressbar" :style="orangeBar" />
+        <div class="column__completion__done progress-bar bg-success" role="progressbar" :style="greenBar" />
       </div>
     </div>
 </template>
@@ -28,34 +27,42 @@
       },
     },
     computed: {
-      doneTotalRatio: function() {
-        return (this.totalComplexity != 0
-          ? this.doneComplexity/this.totalComplexity * 100
-          : 0
+      isEpicOver: function() {
+        return (this.complexity && this.doneComplexity > 0 && this.totalComplexity === this.doneComplexity)
+      },
+      shouldCursorBeVisible: function() {
+        return !(this.doneComplexity === 0 || this.totalComplexity === this.doneComplexity)
+      },
+      whiteBar: function() {
+        return (this.complexity && !this.isEpicOver
+          ? { width: (this.complexity < this.totalComplexity
+            ? (this.complexity*100/this.totalComplexity)
+            : 100) + '%'}
+          : { width: '0%'}
         )
       },
-      blueBar: function() {
-        return ( this.complexity && this.totalComplexity < this.complexity
-          ? { width: (this.totalComplexity/this.complexity * (100 - this.doneTotalRatio) ) + '%' }
-          : { width: (100 - this.doneTotalRatio) + '%'}
+      orangeBar: function() {
+        return (this.complexity
+          ? { width: (this.complexity < this.totalComplexity
+            ? (100 - this.complexity*100/this.totalComplexity - this.overEstimationRatio)
+            : 0) + '%'}
+          : { width: '100%'}
         )
       },
       greenBar: function() {
-        return ( this.complexity && this.totalComplexity < this.complexity
-          ? { width: (100 * this.doneComplexity/this.complexity) + '%' }
-          : { width: (this.doneTotalRatio) + '%'}
-        )
+        return this.isEpicOver ? { width: '100%'} : { width: '0%'}
       },
-      darkBar: function() {
-        return (this.totalComplexity < this.complexity)
-          ? { width: '100%' }
-          : { width: ( this.complexity/this.totalComplexity * 100) + '%' }
+      cursor: function() {
+        return { marginLeft: (this.doneComplexity*100/this.totalComplexity) + '%' }
+      },
+      overEstimationRatio: function() {
+        return (this.complexity && this.doneComplexity > this.complexity
+          ? (this.doneComplexity - this.complexity)*100/this.totalComplexity
+          : 0
+        )
       },
       redBar: function() {
-        return ( this.doneComplexity > this.complexity
-          ? { width: ((this.doneComplexity - this.complexity)/this.totalComplexity * 100) + '%' }
-          : { width: '0%' }
-        )
+        return { width: this.overEstimationRatio + '%' }
       },
     },
   }
@@ -66,7 +73,31 @@
   display: flex;
 }
 
-.bg-dark {
+.progression-bar-position {
+  position: relative;
+}
+
+.progress-bar-cursor {
   background-color: black;
+  border-radius: .25rem;
+  position: absolute;
+  width: 2px;
+  height: 17px;
+}
+
+.progress-bar-border {
+  border: 1px solid transparent;
+  border-color: lightgrey;
+  border-radius: .25rem;
+}
+
+.progress-white-bar-border {
+  border: 1px solid transparent;
+  border-color: lightgrey;
+  border-radius: .25rem;
+}
+
+.bg-white {
+  background-color: white;
 }
 </style>
