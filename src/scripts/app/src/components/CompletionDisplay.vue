@@ -8,7 +8,12 @@
         <div class="column__informations py-2">
           <LabelDetails :label="label" />
         </div>
-        <CompletionRateBar :complexity="label.complexity" :done-complexity="label.doneComplexity" :total-complexity="label.totalComplexity" />
+        <CompletionRateBar
+          :complexity="label.complexity"
+          :done-complexity="label.doneComplexity"
+          :total-complexity="label.totalComplexity"
+          :max-completion-bar-size="maxCompletionBarSize"
+        />
       </div>
     </div>
   </div>
@@ -31,6 +36,16 @@ export default {
       default: []
     }
   },
+  computed: {
+    maxCompletionBarSize: function() {
+      return Math.max.apply(Math, this.labels.map(function(label)
+      {
+        return label.complexity
+          ? Math.max(label.totalComplexity, label.complexity)
+          : label.totalComplexity
+      }))
+    }
+  }
 }
 </script>
 

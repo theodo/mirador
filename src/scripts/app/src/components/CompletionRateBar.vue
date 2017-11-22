@@ -1,6 +1,6 @@
   <template>
     <div>
-      <div class="column__completion progress-bar-border progression-bar-position">
+      <div class="column__completion progress-bar-border progression-bar-position" :style="completionBarSize">
         <div class="progress-bar-cursor" v-if="shouldCursorBeVisible" :style="cursor"></div>
         <div class="column__completion__red-land progress-bar bg-white  progress-white-bar-border" role="progressbar" :style="whiteBar" />
         <div class="column__completion__red-land progress-bar bg-danger" role="progressbar" :style="redBar" />
@@ -25,6 +25,10 @@
         type: Number,
         required: true,
       },
+      maxCompletionBarSize: {
+        type: Number,
+        required: true
+      }
     },
     computed: {
       isEpicOver: function() {
@@ -64,6 +68,11 @@
       redBar: function() {
         return { width: this.overEstimationRatio + '%' }
       },
+      completionBarSize: function() {
+        return this.complexity
+          ? {width: Math.max(this.totalComplexity, this.complexity)*100/this.maxCompletionBarSize + '%'}
+          : {width: this.totalComplexity*100/this.maxCompletionBarSize + '%'}
+      }
     },
   }
 </script>
