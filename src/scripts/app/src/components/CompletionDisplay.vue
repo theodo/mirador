@@ -3,19 +3,49 @@
     <div class="badge-container">
       <InformationBadges />
     </div>
-    <div class="epic__stats" v-for="label in labels">
-      <div class="label-container">
-        <div class="column__informations py-2">
-          <LabelDetails :label="label" />
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#epics" role="tab">Epics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#otherLabels" role="tab">OtherLabels</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="epics" role="tabpanel">
+          <div class="epic__stats" v-for="epic in epics">
+            <div class="label-container">
+              <div class="column__informations py-2">
+                <LabelDetails :label="epic" />
+              </div>
+              <CompletionRateBar
+              :complexity="epic.complexity"
+              :done-complexity="epic.doneComplexity"
+              :total-complexity="epic.totalComplexity"
+              :max-completion-bar-size="maxCompletionBarSize"
+              />
+            </div>
+          </div>
         </div>
-        <CompletionRateBar
-          :complexity="label.complexity"
-          :done-complexity="label.doneComplexity"
-          :total-complexity="label.totalComplexity"
-          :max-completion-bar-size="maxCompletionBarSize"
-        />
+        <div class="tab-pane" id="otherLabels" role="tabpanel">
+          <div class="epic__stats" v-for="label in otherLabels">
+            <div class="label-container">
+              <div class="column__informations py-2">
+                <LabelDetails :label="label" />
+              </div>
+              <CompletionRateBar
+                :complexity="label.complexity"
+                :done-complexity="label.doneComplexity"
+                :total-complexity="label.totalComplexity"
+                :max-completion-bar-size="maxCompletionBarSize"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -44,6 +74,12 @@ export default {
           ? Math.max(label.totalComplexity, label.complexity)
           : label.totalComplexity
       }))
+    },
+    epics: function() {
+      return this.labels.filter(label => label.complexity)
+    },
+    otherLabels: function() {
+      return this.labels.filter(label => !label.complexity)
     }
   }
 }
