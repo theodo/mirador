@@ -4,6 +4,10 @@
 
 Provide an extension to Product Owner so that they have a clear vision on how much they consumed on a subject or how much they still have to do on another.
 
+## Chrome extension
+
+Guys, go and [download the app](https://chrome.google.com/webstore/detail/mirador/hocimlpionmkjkilffhmhpbdhnooakmc) in the chrome store
+
 ## Extension
 
 We use the extension-boilerplate project from EmailThis. It provides an abstraction over the different browser API, so we can publish the extension on all webstores.
