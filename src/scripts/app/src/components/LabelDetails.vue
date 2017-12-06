@@ -1,6 +1,9 @@
 <template>
   <div style="display: flex;">
-    <div class="column__informations__name btn-secondary btn" :style="style" >{{ this.label.title }}</div>
+    <div
+      class="column__informations__name btn-secondary btn"
+      :style="style" >{{ this.label.title }}
+    </div>
     <div>
       <div class="column__informations__complexity-progression">
         <span class="mirador__done">{{ this.label.doneComplexity }}</span> /
@@ -33,7 +36,7 @@
     },
     computed: {
       style: function() {
-        return { backgroundColor: this.label.color }
+        return { backgroundColor: 'white' }//this.label.color }
       },
     }
   }
