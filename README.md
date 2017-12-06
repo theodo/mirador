@@ -45,3 +45,9 @@ To handle the communication between the webpage and the popup, we use the messag
 
 - `process-page` to extract data from the trello board
 - `persist-done-columns` to persist the columns selected as "done columns" in the localStorage
+
+## Push to prod
+- Change the version in manifest.json
+- build the application in prod
+- give the chrome.zip to Cyrille
+
