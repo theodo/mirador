@@ -5,30 +5,30 @@
     </div>
     <div>
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#epics" role="tab">Epics</a>
+        <li class="nav-item mirador__tab">
+          <a class="nav-link" :class="{'active-tab active': activeTab === 'epic-tab'}" @click="changeActiveTab('epic-tab')">Epics</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#otherLabels" role="tab">OtherLabels</a>
+        <li class="nav-item mirador__tab">
+          <a class="nav-link" :class="{'active-tab active': activeTab === 'other-label-tab'}" @click="changeActiveTab('other-label-tab')">OtherLabels</a>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="epics" role="tabpanel">
+        <div class="tab-pane":class="{'active': activeTab === 'epic-tab'}" role="tabpanel">
           <div class="epic__stats" v-for="epic in epics">
             <div class="label-container">
               <div class="column__informations py-2">
                 <LabelDetails :label="epic" />
               </div>
               <CompletionRateBar
-              :complexity="epic.complexity"
-              :done-complexity="epic.doneComplexity"
-              :total-complexity="epic.totalComplexity"
-              :max-completion-bar-size="maxCompletionBarSize"
+                :complexity="epic.complexity"
+                :done-complexity="epic.doneComplexity"
+                :total-complexity="epic.totalComplexity"
+                :max-completion-bar-size="maxCompletionBarSize"
               />
             </div>
           </div>
         </div>
-        <div class="tab-pane" id="otherLabels" role="tabpanel">
+        <div class="tab-pane" :class="{'active': activeTab !== 'epic-tab'}" role="tabpanel">
           <div class="epic__stats" v-for="label in otherLabels">
             <div class="label-container">
               <div class="column__informations py-2">
@@ -66,6 +66,11 @@ export default {
       default: []
     }
   },
+  data: function() {
+    return {
+      activeTab: "epic-tab"
+    }
+  },
   computed: {
     maxCompletionBarSize: function() {
       return Math.max.apply(Math, this.labels.map(function(label)
@@ -80,6 +85,13 @@ export default {
     },
     otherLabels: function() {
       return this.labels.filter(label => !label.complexity)
+    }
+  },
+  methods: {
+    changeActiveTab: function(activeTab) {
+      activeTab === "epic-tab"
+      ? this.activeTab = "epic-tab"
+      : this.activeTab = "other-label-tab"
     }
   }
 }
@@ -104,6 +116,12 @@ export default {
 .column__informations__name {
   font-weight: bold;
   /*color: white;*/
+}
+
+.mirador__tab {
+  flex: 1;
+  text-align: center;
+  color: black;
 }
 
 .column__informations__card-count {
