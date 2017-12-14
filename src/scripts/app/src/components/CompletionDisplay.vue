@@ -104,8 +104,7 @@ export default {
 }
 
 .epic__stats {
-  margin-bottom: 5px;
-  padding: 15px 0;
+  padding-top: 15px;
 }
 
 .column__informations {
