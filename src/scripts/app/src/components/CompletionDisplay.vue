@@ -114,7 +114,6 @@ export default {
 
 .column__informations__name {
   font-weight: bold;
-  /*color: white;*/
 }
 
 .mirador__tab {
