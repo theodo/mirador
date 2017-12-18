@@ -14,6 +14,11 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane":class="{'active': activeTab === 'epic-tab'}" role="tabpanel">
+          <div>
+            <a class="btn mirador__export-btn btn-success" :href="csvExport" download="epic.csv">
+              <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+              Export in CSV</a>
+          </div>
           <div class="epic__stats" v-for="epic in epics">
             <div class="label-container">
               <div class="column__informations py-2">
@@ -85,6 +90,13 @@ export default {
     },
     otherLabels: function() {
       return this.labels.filter(label => !label.complexity)
+    },
+    csvExport: function() {
+      let csv = Object.keys(this.epics[0]).join() + "\n"
+      this.epics.forEach((epic) => {
+        csv += Object.values(epic) + "\n"
+      })
+      return 'data:text/csv;charset=utf-8,' + encodeURI(csv)
     }
   },
   methods: {
@@ -130,6 +142,12 @@ export default {
 .label-container {
   padding: 5px 0;
   font-size: 13px;
+}
+
+.mirador__export-btn {
+  margin-top: 15px;
+  position: absolute;
+  right: 0;
 }
 
 .badge-container {
