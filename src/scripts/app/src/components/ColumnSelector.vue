@@ -1,8 +1,7 @@
 <template>
   <div class="column-selector">
     <div>
-      <div class="container mirador__button-container">
-          <!-- <DefaultButton :title="'Tutorial'"></DefaultButton> -->
+      <div class="container">
           <DefaultButton
             class="btn btn-secondary"
             :callback="openFeedbackForm"

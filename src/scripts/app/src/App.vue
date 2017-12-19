@@ -55,7 +55,7 @@ export default {
 <style>
 #app {
   height: 600px;
-  width: 500px;
+  width: 800px;
   position: relative;
   overflow: scroll;
 }
