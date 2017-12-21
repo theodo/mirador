@@ -24,6 +24,7 @@
       <LabelsTab
         :labels="epics"
         :is-active-tab="activeTab === 'epic-tab'"
+        :has-csv-export="true"
       />
       <LabelsTab
         :labels="otherLabels"
