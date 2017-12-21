@@ -27,48 +27,24 @@
       </li>
     </ul>
     <div class="tab-content">
-      <div class="tab-pane":class="{'active': activeTab === 'epic-tab'}" id="epics" role="tabpanel">
-        <div class="epic__stats" v-for="epic in epics">
-          <div class="label-container">
-            <div class="column__informations py-2">
-              <LabelDetails :label="epic" />
-            </div>
-            <CompletionRateBar
-              :complexity="epic.complexity"
-              :done-complexity="epic.doneComplexity"
-              :total-complexity="epic.totalComplexity"
-              :max-completion-bar-size="maxCompletionBarSize"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane" :class="{'active': activeTab !== 'epic-tab'}"id="otherLabels" role="tabpanel">
-        <div class="epic__stats" v-for="label in otherLabels">
-          <div class="label-container">
-            <div class="column__informations py-2">
-              <LabelDetails :label="label" />
-            </div>
-            <CompletionRateBar
-              :complexity="label.complexity"
-              :done-complexity="label.doneComplexity"
-              :total-complexity="label.totalComplexity"
-              :max-completion-bar-size="maxCompletionBarSize"
-            />
-          </div>
-        </div>
-      </div>
+      <LabelsTab
+        :labels="epics"
+        :is-active-tab="activeTab === 'epic-tab'"
+      />
+      <LabelsTab
+        :labels="otherLabels"
+        :is-active-tab="activeTab === 'other-label-tab'"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import CompletionRateBar from './CompletionRateBar.vue'
-import LabelDetails from './LabelDetails.vue'
+import LabelsTab from './LabelsTab.vue'
 
 export default {
   components: {
-    CompletionRateBar,
-    LabelDetails
+    LabelsTab
   },
   props: {
     labels: {
@@ -82,27 +58,12 @@ export default {
     }
   },
   computed: {
-    maxCompletionBarSize: function() {
-      return Math.max.apply(Math, this.labels.map(function(label)
-      {
-        return label.complexity
-          ? Math.max(label.totalComplexity, label.complexity)
-          : label.totalComplexity
-      }))
-    },
     epics: function() {
       return this.labels.filter(label => label.complexity)
     },
     otherLabels: function() {
       return this.labels.filter(label => !label.complexity)
     },
-    csvExport: function() {
-      let csv = Object.keys(this.epics[0]).join() + "\n"
-      this.epics.forEach((epic) => {
-        csv += Object.values(epic) + "\n"
-      })
-      return 'data:text/csv;charset=utf-8,' + encodeURI(csv)
-    }
   },
   methods: {
     changeActiveTab: function(activeTab) {
