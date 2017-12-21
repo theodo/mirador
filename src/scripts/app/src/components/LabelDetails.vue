@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex;">
+  <div class="label-details-container">
     <div class="column__informations__name btn-secondary btn">
       {{ this.label.title }}
     </div>
@@ -37,6 +37,10 @@
 </script>
 
 <style>
+.label-details-container {
+  display: flex;
+}
+
 .column__informations__name {
   font-weight: bold;
 }
