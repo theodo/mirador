@@ -1,11 +1,16 @@
 <template>
-  <div v-if="isActiveTab">
+  <div v-show="isActiveTab">
     <div class="tab-pane active">
       <div v-if="hasCsvExport">
         <a class="btn mirador__export-btn btn-success" :href="csvExport" download="epic.csv">
           <i class="fa fa-file-excel-o" aria-hidden="true"></i>
           Export in CSV
         </a>
+      </div>
+      <div v-if="labels.length === 0">
+        <span>You don't have any {{labelType}} on your trello board.</span>
+        <br>
+        <span v-if="labelType === 'epics'">Start using smart labelling to display your epics in the mirador dashboard</span>
       </div>
       <div class="epic__stats" v-for="label in labels">
         <div class="label-container">
@@ -34,6 +39,7 @@ export default {
     LabelDetails,
   },
   props: {
+    labelType: String,
     labels: {
       type: Array,
       default: function() {
@@ -56,12 +62,15 @@ export default {
       }))
     },
     csvExport: function() {
-      let csv = Object.keys(this.labels[0]).join() + "\n"
-      this.labels.forEach((epic) => {
-        csv += Object.values(epic) + "\n"
-      })
+      let csv = {}
+      if (this.labels.length > 0) {
+        csv = Object.keys(this.labels[0]).join() + "\n"
+        this.labels.forEach((epic) => {
+          csv += Object.values(epic) + "\n"
+        })
+      }
       return 'data:text/csv;charset=utf-8,' + encodeURI(csv)
-    }
+    },
   }
 }
 </script>

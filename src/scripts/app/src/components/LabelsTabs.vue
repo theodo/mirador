@@ -22,11 +22,13 @@
     </ul>
     <div class="tab-content">
       <LabelsTab
+        label-type="epics"
         :labels="epics"
         :is-active-tab="activeTab === 'epic-tab'"
         :has-csv-export="true"
       />
       <LabelsTab
+        label-type="labels"
         :labels="otherLabels"
         :is-active-tab="activeTab === 'other-label-tab'"
       />
