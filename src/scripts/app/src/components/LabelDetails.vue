@@ -1,8 +1,7 @@
 <template>
   <div style="display: flex;">
-    <div
-      class="column__informations__name btn-secondary btn"
-      :style="style" >{{ this.label.title }}
+    <div class="column__informations__name btn-secondary btn">
+      {{ this.label.title }}
     </div>
     <div>
       <div class="column__informations__complexity-progression">
@@ -33,17 +32,11 @@
         type: Object,
         required: true
       }
-    },
-    computed: {
-      style: function() {
-        return { backgroundColor: 'white' }//this.label.color }
-      },
     }
   }
 </script>
 
 <style>
-
 .column__informations__name {
   font-weight: bold;
 }
