@@ -76,44 +76,10 @@ export default {
 </script>
 
 <style>
-.column {
-  margin: 2px;
-  padding: 2px;
-}
-
-.epic__stats {
-  padding-top: 15px;
-}
-
-.column__informations {
-  display: flex;
-  justify-content: space-between;
-}
-
-.column__informations__name {
-  font-weight: bold;
-}
-
 .mirador__tab {
   flex: 1;
   text-align: center;
   color: black;
-}
-
-.column__informations__card-count {
-  margin-left: 5px;
-  font-style: italic;
-}
-
-.label-container {
-  padding: 5px 0;
-  font-size: 13px;
-}
-
-.mirador__export-btn {
-  margin-top: 15px;
-  position: absolute;
-  right: 0;
 }
 
 .column__informations__complexity-progression {

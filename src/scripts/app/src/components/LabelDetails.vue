@@ -43,6 +43,16 @@
 </script>
 
 <style>
+
+.column__informations__name {
+  font-weight: bold;
+}
+
+.column__informations__card-count {
+  margin-left: 5px;
+  font-style: italic;
+}
+
 .mirador__done {
   color: green;
 }

@@ -58,7 +58,6 @@ export default {
 </script>
 
 <style>
-
 .epic__stats {
   padding-top: 15px;
 }
