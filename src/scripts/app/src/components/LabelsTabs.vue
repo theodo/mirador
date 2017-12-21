@@ -13,7 +13,7 @@
       <li class="nav-item mirador__tab">
         <a
           class="nav-link"
-          :class="{'active': activeTab !== 'epic-tab'}"
+          :class="{'active': activeTab === 'other-label-tab'}"
           @click="changeActiveTab('other-label-tab')"
         >
           OtherLabels
