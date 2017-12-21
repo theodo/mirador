@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs">
       <li class="nav-item mirador__tab">
         <a
           class="nav-link"
