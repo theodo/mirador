@@ -3,7 +3,7 @@
     <div class="badge-container">
       <InformationBadges />
     </div>
-    <LabelTab
+    <LabelsTabs
       :labels="labels"
     />
   </div>
@@ -11,12 +11,12 @@
 
 <script>
 import InformationBadges from './InformationBadges.vue'
-import LabelTab from './LabelTab.vue'
+import LabelsTabs from './LabelsTabs.vue'
 
 export default {
   components: {
     InformationBadges,
-    LabelTab
+    LabelsTabs
   },
   props: {
     labels: {
