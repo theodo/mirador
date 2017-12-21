@@ -1,25 +1,19 @@
 <template>
   <div>
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
+      <li class="nav-item mirador__tab">
         <a
           class="nav-link"
           :class="{'active': activeTab === 'epic-tab'}"
-          data-toggle="tab"
-          href="#epics"
-          role="tab"
           @click="changeActiveTab('epic-tab')"
         >
           Epics
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item mirador__tab">
         <a
           class="nav-link"
           :class="{'active': activeTab !== 'epic-tab'}"
-          data-toggle="tab"
-          href="#otherLabels"
-          role="tab"
           @click="changeActiveTab('other-label-tab')"
         >
           OtherLabels
