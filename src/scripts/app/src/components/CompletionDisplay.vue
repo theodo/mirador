@@ -21,7 +21,9 @@ export default {
   props: {
     labels: {
       type: Array,
-      default: []
+      default: function() {
+        return []
+      }
     }
   }
 }
