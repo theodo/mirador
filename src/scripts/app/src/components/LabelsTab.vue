@@ -32,6 +32,7 @@
 <script>
 import CompletionRateBar from './CompletionRateBar.vue'
 import LabelDetails from './LabelDetails.vue'
+import csvComputer from '../services/csvComputer'
 
 export default {
   components: {
@@ -62,14 +63,7 @@ export default {
       }))
     },
     csvExport: function() {
-      let csv = {}
-      if (this.labels.length > 0) {
-        csv = Object.keys(this.labels[0]).join() + "\n"
-        this.labels.forEach((epic) => {
-          csv += Object.values(epic) + "\n"
-        })
-      }
-      return 'data:text/csv;charset=utf-8,' + encodeURI(csv)
+      return csvComputer.getCsvDataFromLabels(this.labels)
     },
   }
 }
