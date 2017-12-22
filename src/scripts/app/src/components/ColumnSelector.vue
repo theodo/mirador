@@ -48,11 +48,15 @@ export default {
   props: {
     columns: {
       type: Array,
-      default: [],
+      default: function() {
+        return []
+      },
     },
     doneColumns: {
       type: Array,
-      default: [],
+      default: function() {
+        return []
+      },
     }
   },
   data: function() {

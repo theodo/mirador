@@ -1,8 +1,7 @@
 <template>
-  <div style="display: flex;">
-    <div
-      class="column__informations__name btn-secondary btn"
-      :style="style" >{{ this.label.title }}
+  <div class="label-details-container">
+    <div class="column__informations__name btn-secondary btn">
+      {{ this.label.title }}
     </div>
     <div>
       <div class="column__informations__complexity-progression">
@@ -33,16 +32,24 @@
         type: Object,
         required: true
       }
-    },
-    computed: {
-      style: function() {
-        return { backgroundColor: 'white' }//this.label.color }
-      },
     }
   }
 </script>
 
 <style>
+.label-details-container {
+  display: flex;
+}
+
+.column__informations__name {
+  font-weight: bold;
+}
+
+.column__informations__card-count {
+  margin-left: 5px;
+  font-style: italic;
+}
+
 .mirador__done {
   color: green;
 }
