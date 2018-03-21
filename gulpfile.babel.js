@@ -24,14 +24,6 @@ var manifest = {
         "scripts/livereload.js",
       ]
     }
-  },
-
-  firefox: {
-    "applications": {
-      "gecko": {
-        "id": "my-app-id@mozilla.org"
-      }
-    }
   }
 }
 
@@ -78,11 +70,6 @@ gulp.task("manifest", () => {
       fileName: "manifest.json",
       jsonSpace: " ".repeat(4),
       endObj: manifest.dev
-    })))
-    .pipe(gulpif(target === "firefox", $.mergeJson({
-      fileName: "manifest.json",
-      jsonSpace: " ".repeat(4),
-      endObj: manifest.firefox
     })))
     .pipe(gulp.dest(`./build/${target}`))
 });
